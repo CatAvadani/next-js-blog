@@ -9,6 +9,12 @@ export default async function Home() {
       <h1 className=' text-6xl font-bold mt-8 mb-12'>Blog</h1>
 
       <span className=' mb-12'>{new Date().toUTCString()}</span>
+
+      <Link href='/posts/create'>
+        <button className=' bg-slate-200 p-4 border rounded-full'>
+          Add New Post
+        </button>
+      </Link>
       <h2 className='text-4xl font-bold'>Latest Posts</h2>
       <nav className='flex flex-col gap-3'>
         {blogPosts.map((post: any) => (

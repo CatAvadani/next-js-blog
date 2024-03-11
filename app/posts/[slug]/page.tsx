@@ -12,6 +12,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   const blogPosts = await getBlogPosts();
   const blogPost = blogPosts.find((post: any) => post.slug === params.slug);
 
+  console.log("Building Post Page", params.slug);
+
   if (!blogPost) {
     return (
       <main>
