@@ -16,7 +16,7 @@ export default async function CreateBlogPost() {
         <label htmlFor='author'>Author</label>
         <input id='author' type='text' name='author' className=' p-2' />
 
-        <label htmlFor='contnet'>Content</label>
+        <label htmlFor='content'>Content</label>
         <textarea id='content' rows={6} name='content' className=' p-2' />
         <button className='mt-4'>Create Post</button>
       </form>
