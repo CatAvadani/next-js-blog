@@ -1,20 +1,14 @@
-import fs from "fs/promises";
 import Link from "next/link";
+import getBlogPosts from "./blogPosts";
 
 export default async function Home() {
-  const data = await fs.readFile("data/blog-posts.json", {
-    encoding: "utf-8",
-  });
-
-  const blogPosts = JSON.parse(data);
-
-  const currentDate = new Date().toUTCString();
-  console.log(data);
+  const blogPosts = await getBlogPosts();
 
   return (
     <main className='flex flex-col items-center gap-4'>
       <h1 className=' text-6xl font-bold mt-8 mb-12'>Blog</h1>
-      <span className=' mb-12'>{currentDate}</span>
+
+      <span className=' mb-12'>{new Date().toUTCString()}</span>
       <h2 className='text-4xl font-bold'>Latest Posts</h2>
       <nav className='flex flex-col gap-3'>
         {blogPosts.map((post: any) => (
