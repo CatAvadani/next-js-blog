@@ -1,31 +1,6 @@
-import getBlogPosts from "@/app/blogPosts";
-import fs from "fs/promises";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { createBlogPost } from "@/app/blogPosts";
 
-export default async function CreatePostPage() {
-  const createBlogPost = async (formData: FormData) => {
-    "use server";
-    const rawData = Object.fromEntries(formData.entries()) as any;
-
-    const newPost = {
-      id: Date.now().toString(),
-      slug: rawData.title.toLowerCase().split("").join("-"),
-      ...rawData,
-    };
-
-    const blogPosts = await getBlogPosts();
-    blogPosts.push(newPost);
-    await fs.writeFile(
-      "data/blog-posts.json",
-      JSON.stringify(blogPosts, null, 2)
-    );
-    // Revalidate and redirect
-    revalidatePath("/");
-    revalidatePath(`/posts/${newPost.slug}`);
-    redirect("/");
-  };
-
+export default async function CreateBlogPost() {
   return (
     <main className=' p-4 flex flex-col gap-4  items-center'>
       <h1 className=' text-4xl my-8'>Create New Post</h1>
